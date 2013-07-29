@@ -236,6 +236,15 @@
         color: #0881B3;
         display: inline-block;
       }
+      article .image:hover {
+        text-decoration: none;
+        border: none;
+      }
+      article img {
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+      }
       article h3 {
         font-size: 1.4em;
         font-weight: 700;
@@ -267,6 +276,18 @@
       }
       #article .title .meta {
         text-align: left;
+      }
+
+      /* Photo Posts */
+      .photo img {
+        max-width: 155%;
+        width: 155%;
+        height: auto;
+        margin-left: -27.5%;
+        overflow: hidden;
+      }
+      .photo .caption {
+        text-align: center;
       }
 
       /* Discussion */
@@ -387,6 +408,11 @@
           display: block;
           margin: 0;
         }
+        .photo img {
+          max-width: 100%;
+          width: 100%;
+          margin: 0 auto;
+        }
         article .title .meta .social {
           display: none!important;
         }
@@ -426,6 +452,7 @@
     <section>
       <div id="articles">
           {block:Posts}
+
             {block:Text}
               <article class="post text">
                 {block:Title}
@@ -445,30 +472,107 @@
                   </div>
                 {/block:Title}
                 <div class="content">{Body}</div>
-                <div class="discussion">
-                  <div class="separator"></div>
-                  {block:Twitter}
-                    <a href="https://twitter.com/{TwitterUsername}" class="twitter-follow-button" data-show-count="false">Follow @{TwitterUsername}</a>
-                    <div class="social">
-                      {block:Title}
-                        <a href="https://twitter.com/share" class="twitter-share-button" data-text="{Title}" data-via="{TwitterUsername}" data-count="none">Tweet</a>
-                      {/block:Title}
-                      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                    </div>
-                  {/block:Twitter}
-                  {block:IfDisqusShortname}
-                    <h3>Leave a Comment</h3>
-                    <div class="row">
-                      <div class="span10 offset2 comments-container">
-                        <div id="disqus_thread"></div>
-                        <script type="text/javascript" src="http://{text:Disqus Shortname}.disqus.com/embed.js"></script>
-                        <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
-                      </div> <!-- .comments-container -->
-                    </div>
-                  {/block:IfDisqusShortname}
-                </div>
+                {block:PermalinkPage}
+                  <div class="discussion">
+                    <div class="separator"></div>
+                    {block:Twitter}
+                      <a href="https://twitter.com/{TwitterUsername}" class="twitter-follow-button" data-show-count="false">Follow @{TwitterUsername}</a>
+                      <div class="social">
+                        {block:Title}
+                          <a href="https://twitter.com/share" class="twitter-share-button" data-text="{Title}" data-via="{TwitterUsername}" data-count="none" data-url="{Permalink}">Tweet</a>
+                        {/block:Title}
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                      </div>
+                    {/block:Twitter}
+                    {block:IfDisqusShortname}
+                      <h3>Leave a Comment</h3>
+                      <div class="row">
+                        <div class="span10 offset2 comments-container">
+                          <div id="disqus_thread"></div>
+                          <script type="text/javascript" src="http://{text:Disqus Shortname}.disqus.com/embed.js"></script>
+                          <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
+                        </div> <!-- .comments-container -->
+                      </div>
+                    {/block:IfDisqusShortname}
+                  </div>
+                {/block:PermalinkPage}
               </article>
             {/block:Text}
+
+            {block:Photo}
+              <article class="post photo">
+                <div class="title">
+                  {block:Date}
+                    <div class="meta"><span id="date">Posted {TimeAgo}</span>
+                      {block:IfDisqusShortname}
+                        <div class="comments"><a class="dsq-comment-count" href="{Permalink}#disqus_thread">{lang:Comments}</a></span></div>
+                      {/block:IfDisqusShortname}
+                    </div>
+                  {/block:Date}
+                </div>
+                <div class="content">
+                  <a class="image" href="{Permalink}">
+                    <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>
+                  </a>
+                  {block:Caption}
+                    <div class="caption">{Caption}</div>
+                  {/block:Caption}
+                </div>
+                {block:PermalinkPage}
+                  <div class="discussion">
+                    <div class="separator"></div>
+                    {block:Twitter}
+                      <a href="https://twitter.com/{TwitterUsername}" class="twitter-follow-button" data-show-count="false">Follow @{TwitterUsername}</a>
+                      <div class="social">
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-text="Photo • {PhotoAlt}" data-via="{TwitterUsername}" data-count="none" data-url="{Permalink}">Tweet</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                      </div>
+                    {/block:Twitter}
+                    {block:IfDisqusShortname}
+                      <h3>Leave a Comment</h3>
+                      <div class="row">
+                        <div class="span10 offset2 comments-container">
+                          <div id="disqus_thread"></div>
+                          <script type="text/javascript" src="http://{text:Disqus Shortname}.disqus.com/embed.js"></script>
+                          <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
+                        </div> <!-- .comments-container -->
+                      </div>
+                    {/block:IfDisqusShortname}
+                  </div>
+                {/block:PermalinkPage}
+              </article>
+            {/block:Photo}
+
+            {block:Panorama}
+              <article class="post panorama">
+              </article>
+            {/block:Panorama}
+
+            {block:Photoset}
+              <article class="post photoset">
+              </article>
+            {/block:Photoset}
+
+            {block:Quote}
+              <article class="post quote">
+              </article>
+            {/block:Quote}
+
+            {block:Chat}
+              <article class="post chat">
+              </article>
+            {/block:Chat}
+
+            {block:Video}
+              <article class="post video">
+              </article>
+            {/block:Video}
+
+            {block:Audio}
+              <article class="post audio">
+              </article>
+            {/block:Audio}
+
           {/block:Posts}
       </div>
       <div class="posts clearfix">
