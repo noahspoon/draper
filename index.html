@@ -292,6 +292,17 @@
         text-align: center;
       }
 
+      /* Quote Posts */
+      .quote blockquote a {
+        color: #444;
+        text-decoration: none;
+        border: none;
+      }
+      .quote blockquote a:hover {
+        text-decoration: none;
+        border: none;
+      }
+
       /* Discussion */
       .discussion .separator {
         margin: 2em 0 1.4em 0;
@@ -573,7 +584,7 @@
                     {block:Twitter}
                       <a href="https://twitter.com/{TwitterUsername}" class="twitter-follow-button" data-show-count="false">Follow @{TwitterUsername}</a>
                       <div class="social">
-                        <a href="https://twitter.com/share" class="twitter-share-button" data-text="Photo • {PhotoAlt}" data-via="{TwitterUsername}" data-count="none" data-url="{Permalink}">Tweet</a>
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-text="Photoset • {PhotoAlt}" data-via="{TwitterUsername}" data-count="none" data-url="{Permalink}">Tweet</a>
                         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
                       </div>
                     {/block:Twitter}
@@ -594,6 +605,47 @@
 
             {block:Quote}
               <article class="post quote">
+                <div class="title">
+                  {block:Date}
+                    <div class="meta"><span id="date">Posted {TimeAgo}</span>
+                      {block:IfDisqusShortname}
+                        <div class="comments"><a class="dsq-comment-count" href="{Permalink}#disqus_thread">{lang:Comments}</a></span></div>
+                      {/block:IfDisqusShortname}
+                    </div>
+                  {/block:Date}
+                </div>
+                <blockquote>
+                  <a href="{Permalink}">
+                    <p>{Quote}</p>
+                  </a>
+                </blockquote>
+                {block:Source}
+                  <div class="source">&mdash; {Source}</div>
+                {/block:Source}
+                {block:PermalinkPage}
+                  <div class="discussion">
+                    <div class="separator"></div>
+                    {block:Twitter}
+                      <a href="https://twitter.com/{TwitterUsername}" class="twitter-follow-button" data-show-count="false">Follow @{TwitterUsername}</a>
+                      <div class="social">
+                        {block:Source}
+                          <a href="https://twitter.com/share" class="twitter-share-button" data-text="Quote • {Source}" data-via="{TwitterUsername}" data-count="none" data-url="{Permalink}">Tweet</a>
+                        {/block:Source}
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                      </div>
+                    {/block:Twitter}
+                    {block:IfDisqusShortname}
+                      <h3>Leave a Comment</h3>
+                      <div class="row">
+                        <div class="span10 offset2 comments-container">
+                          <div id="disqus_thread"></div>
+                          <script type="text/javascript" src="http://{text:Disqus Shortname}.disqus.com/embed.js"></script>
+                          <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
+                        </div> <!-- .comments-container -->
+                      </div>
+                    {/block:IfDisqusShortname}
+                  </div>
+                {/block:PermalinkPage}
               </article>
             {/block:Quote}
 
