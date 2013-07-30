@@ -229,6 +229,14 @@
         line-height: 1.8em;
         margin-bottom: 0.25em;
       }
+      article .title .tags {
+        text-align: center;
+        font-size: 0.8em;
+        line-height: 1.8em;
+      }
+      article .title .tags a {
+        color: #444;
+      }
       article .title .meta #date:after {
         content: " — ";
       }
@@ -365,19 +373,17 @@
       /* Posts Pager */
       .posts {
         display: block;
-        max-width: 600px;
         margin: 0 auto;
       }
+      .posts ul {
+        max-width: 945px;
+      }
       .posts li {
-        width: 33%;
-        display: inline-block;
+        display: block;
       }
-      .posts .previous {
-        float: left;
-      }
+      .posts .previous,
       .posts .next {
-        text-align: right;
-        float: right;
+        text-align: center;
       }
       .previous a,
       .next a {
@@ -430,6 +436,10 @@
         article .title .meta .social {
           display: none!important;
         }
+        .previous a,
+        .next a {
+          margin-left: 0;
+        }
         footer {
           width: 100%;
           padding-bottom: 1.5em;
@@ -447,13 +457,13 @@
   <body>
     <header>
       <nav>
-        <a href="" id="logo">{Title}</a>
+        <a href="/" id="logo">{Title}</a>
         <ul>
           <li>
             <a href="">Home</a>
           </li>
           <li>
-            <a href="" data-active="true">Blog</a>
+            <a href="/" data-active="true">Blog</a>
           </li>
         </ul>
         <div class="pull-right">
@@ -476,6 +486,13 @@
                         <span>{Title}</span>
                       </a>
                     </h1>
+                    {block:HasTags}
+                      <div class="tags">
+                        {block:Tags}
+                          <a class="tag" href="{TagURL}">#{Tag}</a>
+                        {/block:Tags}
+                      </div>
+                    {/block:HasTags}
                     {block:Date}
                       <div class="meta"><span id="date">Posted {TimeAgo}</span>
                         {block:IfDisqusShortname}
@@ -516,6 +533,13 @@
             {block:Photo}
               <article class="post photo">
                 <div class="title">
+                  {block:HasTags}
+                    <div class="tags">
+                      {block:Tags}
+                        <a class="tag" href="{TagURL}">#{Tag}</a>
+                      {/block:Tags}
+                    </div>
+                  {/block:HasTags}
                   {block:Date}
                     <div class="meta"><span id="date">Posted {TimeAgo}</span>
                       {block:IfDisqusShortname}
@@ -560,6 +584,13 @@
             {block:Photoset}
               <article class="post photoset">
                 <div class="title">
+                  {block:HasTags}
+                    <div class="tags">
+                      {block:Tags}
+                        <a class="tag" href="{TagURL}">#{Tag}</a>
+                      {/block:Tags}
+                    </div>
+                  {/block:HasTags}
                   {block:Date}
                     <div class="meta"><span id="date">Posted {TimeAgo}</span>
                       {block:IfDisqusShortname}
@@ -606,6 +637,13 @@
             {block:Quote}
               <article class="post quote">
                 <div class="title">
+                  {block:HasTags}
+                    <div class="tags">
+                      {block:Tags}
+                        <a class="tag" href="{TagURL}">#{Tag}</a>
+                      {/block:Tags}
+                    </div>
+                  {/block:HasTags}
                   {block:Date}
                     <div class="meta"><span id="date">Posted {TimeAgo}</span>
                       {block:IfDisqusShortname}
