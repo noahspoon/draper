@@ -312,6 +312,9 @@
       }
 
       /* Link Posts */
+      .link .link_og_blockquote {
+        padding: 0;
+      }
       .link #content {
         text-align: center;
       }
@@ -406,16 +409,21 @@
       .posts {
         display: block;
         margin: 0 auto;
+        max-width: 600px;
       }
       .posts ul {
-        max-width: 945px;
+        margin-left: -2.5em;
       }
       .posts li {
-        display: block;
+        width: 33%;
+        display: inline-block;
       }
-      .posts .previous,
+      .posts .previous {
+        float: left;
+      }
       .posts .next {
-        text-align: center;
+        float: right;
+        text-align: right;
       }
       .previous a,
       .next a {
@@ -473,9 +481,8 @@
         article .title .meta .social {
           display: none!important;
         }
-        .previous a,
-        .next a {
-          margin-left: 0;
+        .posts ul {
+          margin: 0;
         }
         footer {
           width: 100%;
