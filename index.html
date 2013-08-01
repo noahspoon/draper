@@ -371,6 +371,17 @@
       .post .social .twitter-follow-button {
         float: left;
       }
+      .post .social .pin-it img {
+        max-width: inherit;
+        width: inherit;
+        margin: 0;
+      }
+      .post .social .pin-it {
+        border: none;
+      }
+      .post .social .pin-it:hover {
+        border: none;
+      }
 
       /* Blockquote */
       blockquote {
@@ -566,8 +577,11 @@
                       <div class="social">
                         {block:Title}
                           <a href="https://twitter.com/share" class="twitter-share-button" data-text="{Title}" data-via="{TwitterUsername}" data-count="none" data-url="{Permalink}">Tweet</a>
+                          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                          <a class="pin-it" href="//pinterest.com/pin/create/button/?url={Permalink}&media={Permalink}&description={Title}" data-pin-do="buttonPin" data-pin-config="none">
+                            <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
+                          </a>
                         {/block:Title}
-                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
                       </div>
                     {/block:Twitter}
                     {block:IfDisqusShortname}
@@ -619,6 +633,9 @@
                       <div class="social">
                         <a href="https://twitter.com/share" class="twitter-share-button" data-text="Photo • {PhotoAlt}" data-via="{TwitterUsername}" data-count="none" data-url="{Permalink}">Tweet</a>
                         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                        <a class="pin-it" href="//pinterest.com/pin/create/button/?url={Permalink}&media={Permalink}&description={PhotoAlt}" data-pin-do="buttonPin" data-pin-config="none">
+                          <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
+                        </a>
                       </div>
                     {/block:Twitter}
                     {block:IfDisqusShortname}
@@ -672,6 +689,9 @@
                       <div class="social">
                         <a href="https://twitter.com/share" class="twitter-share-button" data-text="Photoset • {PhotoAlt}" data-via="{TwitterUsername}" data-count="none" data-url="{Permalink}">Tweet</a>
                         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                        <a class="pin-it" href="//pinterest.com/pin/create/button/?url={Permalink}&media={Permalink}&description={PhotoAlt}" data-pin-do="buttonPin" data-pin-config="none">
+                          <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
+                        </a>
                       </div>
                     {/block:Twitter}
                     {block:IfDisqusShortname}
@@ -723,8 +743,11 @@
                       <div class="social">
                         {block:Source}
                           <a href="https://twitter.com/share" class="twitter-share-button" data-text="Quote • {Source}" data-via="{TwitterUsername}" data-count="none" data-url="{Permalink}">Tweet</a>
+                          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                          <a class="pin-it" href="//pinterest.com/pin/create/button/?url={Permalink}&media={Permalink}&description={Source}" data-pin-do="buttonPin" data-pin-config="none">
+                            <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
+                          </a>
                         {/block:Source}
-                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
                       </div>
                     {/block:Twitter}
                     {block:IfDisqusShortname}
@@ -776,6 +799,9 @@
                       <div class="social">
                         <a href="https://twitter.com/share" class="twitter-share-button" data-text="Link • {Name}" data-via="{TwitterUsername}" data-count="none" data-url="{Permalink}">Tweet</a>
                         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                        <a class="pin-it" href="//pinterest.com/pin/create/button/?url={Permalink}&media={Permalink}&description={Name}" data-pin-do="buttonPin" data-pin-config="none">
+                          <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
+                        </a>
                       </div>
                     {/block:Twitter}
                     {block:IfDisqusShortname}
@@ -825,8 +851,11 @@
                       <div class="social">
                         {block:Caption}
                           <a href="https://twitter.com/share" class="twitter-share-button" data-text="I just posted a video" data-via="{TwitterUsername}" data-count="none" data-url="{Permalink}">Tweet</a>
+                          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                          <a class="pin-it" href="//pinterest.com/pin/create/button/?url={Permalink}&media={Permalink}&description=" data-pin-do="buttonPin" data-pin-config="none">
+                            <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
+                          </a>
                         {/block:Caption}
-                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
                       </div>
                     {/block:Twitter}
                     {block:IfDisqusShortname}
