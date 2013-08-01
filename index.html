@@ -11,6 +11,17 @@
     {/block:Description}
     <meta name="text:Disqus Shortname" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!-- DEFAULT COLORS -->
+    <meta name="color:Background" content="#fafafa" />
+    <meta name="color:Logo" content="#dddddd" />
+    <meta name="color:Nav Link" content="#999999" />
+    <meta name="color:Nav Link Hover" content="#1C1C1C" />
+    <meta name="color:Body Text" content="#444444" />
+    <meta name="color:Link" content="#0881b3" />
+    <meta name="color:Separator" content="#dddddd" />
+    <meta name="color:Article Title" content="#222222" />
+    <meta name="color:Article Meta" content="#949494" />
+    <meta name="color:Highlight" content="#fffeca" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     {block:IfGoogleAnalyticsID}
       <script>
@@ -51,7 +62,7 @@
         display: inline-block;
         float: left;
         font-size: 30px;
-        color: #dddddd;
+        color: {color:Logo};
         text-shadow: 1px -1px 1px rgba(0,0,0,0.3);
         border: none;
       }
@@ -66,7 +77,7 @@
       }
       nav ul li a {
         font-size: 16px;
-        color: #999;
+        color: {color:Nav Link};
         text-shadow: 0 1px 0 #FFF;
         margin: 0 0.5em;
         transition: color 1s;
@@ -76,7 +87,7 @@
       nav ul li a:hover,
       nav ul li a[data-active="true"],
       footer a[data-active="true"] {
-        color: #1C1C1C;
+        color: {color:Nav Link Hover};
       }
       nav #button {
         vertical-align: -6px;
@@ -141,13 +152,13 @@
         max-width: 945px;
       }
       body {
-        color: #444;
-        background: #fafafa;
+        color: {color:Body Text};
+        background: {color:Background};
         font-family: "Montserrat",'Helvetica Neue', Helvetica, Arial, sans-serif;
         font-weight: 400;
       }
       a {
-        color: #0881b3;
+        color: {color:Link};
         text-decoration: none;
         border-bottom: 1px solid transparent;
       }
@@ -175,7 +186,7 @@
         float: right;
       }
       .separator {
-        border-top: 1px solid #ddd;
+        border-top: 1px solid {color:Separator};
         padding: 0.75em 0;
       }
       footer {
@@ -183,7 +194,7 @@
         padding-bottom: 1.5em;
       }
       footer a {
-        color: #999;
+        color: {color:Nav Link};
         text-shadow: 0 1px 0 #fff;
         margin: 0 2.5em;
         transition: color 1s;
@@ -191,7 +202,7 @@
         -webkit-transition: color 1s;
       }
       footer a:hover {
-        color: #1C1C1C;
+        color: {color:Nav Link Hover};
       }
 
       /* Shared Article Styles */
@@ -212,7 +223,7 @@
         text-align: center;
       }
       article .title h1 a {
-        color: #222;
+        color: {color:Article Title};
         border: none;
       }
       article .title h1 a:hover {
@@ -224,7 +235,7 @@
       }
       article .title .meta {
         text-align: center;
-        color: #949494;
+        color: {color:Article Meta};
         font-size: 0.8em;
         line-height: 1.8em;
         margin-bottom: 0.25em;
@@ -235,13 +246,13 @@
         line-height: 1.8em;
       }
       article .title .tags a {
-        color: #444;
+        color: {color:Body Text};
       }
       article .title .meta #date:after {
         content: " — ";
       }
       article .title .meta .comments {
-        color: #0881B3;
+        color: {color:Link};
         display: inline-block;
       }
       article .image:hover {
@@ -257,11 +268,11 @@
         font-size: 1.4em;
         font-weight: 700;
         margin: 35px 0 43px 0;
-        color: #222;
+        color: {color:Article Title};
       }
       article strong {
         font-weight: 700;
-        color: #222;
+        color: {color:Article Title};
       }
       article
       article ul {
@@ -302,7 +313,7 @@
 
       /* Quote Posts */
       .quote blockquote a {
-        color: #444;
+        color: {color:Body Text};
         text-decoration: none;
         border: none;
       }
@@ -323,7 +334,7 @@
         padding: none;
       }
       .link #description {
-        color: #444;
+        color: {color:Body Text};
         text-decoration: none;
         border: none;
       }
@@ -337,7 +348,7 @@
         max-width: 600px;
       }
       .video #caption {
-        color: #444;
+        color: {color:Body Text};
         text-decoration: none;
         border: none;
       }
@@ -363,7 +374,7 @@
 
       /* Blockquote */
       blockquote {
-        border-left: 3px solid #ddd;
+        border-left: 3px solid {color:Separator};
         margin: 0 0 1em;
         padding-left: 1.3em;
       }
@@ -373,7 +384,7 @@
 
       /* Emphasize */
       em {
-        background-color: #fffeca;
+        background-color: {color:Highlight};
         padding: 0 0.1em;
       }
 
@@ -427,7 +438,7 @@
       }
       .previous a,
       .next a {
-        color: #999;
+        color: {color:Nav Link};
         font-weight: 400;
         transition: color 1s;
         -moz-transition: color 1s;
@@ -435,7 +446,7 @@
       }
       .previous a:hover,
       .next a:hover {
-        color: #1C1C1C;
+        color: {color:Nav Link Hover};
         border: none;
       }
 
