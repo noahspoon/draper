@@ -38,8 +38,12 @@
     <meta name="text:Your Profession" content="Software Developer" />
     <meta name="text:1st Blurb" content="foo" />
     <meta name="text:2nd Blurb" content="bar" />
+    <meta name="text:Image Hero Height" content="200" />
+    <meta name="text:Image Hero Width" content="398" />
     <!-- DEFAULTS -->
-    <meta name="if:Show As Landing Page" content="0"/>
+    <meta name="if:Show As Landing Page" content="0" />
+    <!-- DEFAULT IMAGE -->
+    <meta name="image:Hero" content="http://chocol.it/assets/workstation.png" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     {block:IfGoogleAnalyticsID}
@@ -415,6 +419,7 @@
       }
       #landing img {
         max-width: 100%;
+        height: auto;
       }
       #landing h1 {
         color: #222;
@@ -423,7 +428,7 @@
         font-size: 2.75em;
         text-shadow: 0 1px 0 #FFF;
         line-height: 1.2em;
-        margin: 0.5em 0 0.7em 0;
+        margin: 0.4em 0 0.5em 0;
       }
       #landing h1 span {
         font-weight: 700;
@@ -631,9 +636,16 @@
       </nav>
     </header>
     <section>
+
       {block:IfShowAsLandingPage}
         <div id="landing">
-          <img height="200" id="workstation" src="/" width="398">
+          {block:IfHeroImage}
+            {block:IfImageHeroHeight}
+              {block:IfImageHeroWidth}
+                <img height="{text:Image Hero Height}" id="workstation" src="{image:Hero}" width="{text:Image Hero Width}">
+              {/block:IfImageHeroWidth}
+            {/block:IfImageHeroHeight}
+          {/block:IfHeroImage}
           {block:IfYourName}
             {block:IfYourProfession}
               <h1>
@@ -649,6 +661,7 @@
           {/block:If2ndBlurb}
         </div>
       {/block:IfShowAsLandingPage}
+
       {block:IfNotShowAsLandingPage}
         <div id="articles">
             {block:Posts}
