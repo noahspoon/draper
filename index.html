@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>{Title}</title>
-    <link rel="shortcut icon" href="{ Favicon}">
+    <link rel="shortcut icon" href="{Favicon}">
     <link rel="alternate" type="application/rss+xml" title="{ Title} • Feed" href="{RSS}">
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     {block:Description}
@@ -11,6 +11,7 @@
     {/block:Description}
     <meta name="text:Disqus Shortname" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
     <!-- DEFAULT COLORS -->
     <meta name="color:Background" content="#fafafa" />
     <meta name="color:Logo" content="#dddddd" />
@@ -23,7 +24,23 @@
     <meta name="color:Article Meta" content="#949494" />
     <meta name="color:Highlight" content="#fffeca" />
     <!-- DEFAULT TEXT -->
+    <meta name="text:Logo Text" content="draper" />
     <meta name="text:Facebook App ID" content="" />
+    <meta name="text:Home Link Url" content="http://chocolit-draper-home.tumblr.com" />
+    <meta name="text:Blog Link Url" content="http://chocolit-draper.tumblr.com" />
+    <meta name="text:3rd Link Text" content="Code" />
+    <meta name="text:3rd Link Url" content="http://chocolit-draper.tumblr.com/tagged/code" />
+    <meta name="text:4th Link Text" content="Things" />
+    <meta name="text:4th Link Url" content="http://chocolit-draper.tumblr.com/tagged/things" />
+    <meta name="text:5th Link Text" content="Stuff" />
+    <meta name="text:5th Link Url" content="http://chocolit-draper.tumblr.com/tagged/stuff" />
+    <meta name="text:Your Name" content="Christopher Hopkins" />
+    <meta name="text:Your Profession" content="Software Developer" />
+    <meta name="text:1st Blurb" content="foo" />
+    <meta name="text:2nd Blurb" content="bar" />
+    <!-- DEFAULTS -->
+    <meta name="if:Show As Landing Page" content="0"/>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     {block:IfGoogleAnalyticsID}
       <script>
@@ -391,6 +408,33 @@
         border: none;
       }
 
+      /* Landing Page */
+      #landing {
+        text-align: center;
+        margin-bottom: 2em;
+      }
+      #landing img {
+        max-width: 100%;
+      }
+      #landing h1 {
+        color: #222;
+        font-family: "Montserrat", 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 2.75em;
+        text-shadow: 0 1px 0 #FFF;
+        line-height: 1.2em;
+        margin: 0.5em 0 0.7em 0;
+      }
+      #landing h1 span {
+        font-weight: 700;
+      }
+      #landing p {
+        margin: 1em auto;
+        line-height: 1.5em;
+        font-size: 17px;
+        max-width: 800px;
+      }
+
       /* Blockquote */
       blockquote {
         border-left: 3px solid {color:Separator};
@@ -543,13 +587,40 @@
     {/block:IfFacebookAppID}
     <header>
       <nav>
-        <a href="/" id="logo">{Title}</a>
+        {block:IfLogoText}
+          <a href="/" id="logo">{text:Logo Text}</a>
+        {/block:IfLogoText}
         <ul>
           <li>
-            <a href="">Home</a>
+            {block:IfHomeLinkUrl}
+              <a href="{text:Home Link Url}">Home</a>
+            {/block:IfNotHomeLinkUrl}
           </li>
           <li>
-            <a href="/" data-active="true">Blog</a>
+            {block:IfBlogLinkUrl}
+              <a href="{text:Blog Link Url}" data-active="true">Blog</a>
+            {/block:IfBlogLinkUrl}
+          </li>
+          <li>
+            {block:If3rdLinkUrl}
+              {block:If3rdLinkText}
+                <a href="{text:3rd Link Url}">{text:3rd Link Text}</a>
+              {/block:If3rdLinkText}
+            {/block:If3rdLinkUrl}
+          </li>
+          <li>
+            {block:If4thLinkUrl}
+              {block:If4thLinkText}
+                <a href="{text:4th Link Url}">{text:4th Link Text}</a>
+              {/block:If4thLinkText}
+            {/block:If4thLinkUrl}
+          </li>
+          <li>
+            {block:If5thLinkUrl}
+              {block:If5thLinkText}
+                <a href="{text:5th Link Url}">{text:5th Link Text}</a>
+              {/block:If5thLinkText}
+            {/block:If5thLinkUrl}
           </li>
         </ul>
         <div class="pull-right">
@@ -560,18 +631,88 @@
       </nav>
     </header>
     <section>
-      <div id="articles">
-          {block:Posts}
+      {block:IfShowAsLandingPage}
+        <div id="landing">
+          <img height="200" id="workstation" src="/" width="398">
+          {block:IfYourName}
+            {block:IfYourProfession}
+              <h1>
+                <span>{text:Your Name}</span><br>{text:Your Profession}
+              </h1>
+            {/block:IfYourProfession}
+          {/block:IfYourName}
+          {block:If1stBlurb}
+            <p>{text:1st Blurb}</p>
+          {/block:If1stBlurb}
+          {block:If2ndBlurb}
+            <p>{text:2nd Blurb}</p>
+          {/block:If2ndBlurb}
+        </div>
+      {/block:IfShowAsLandingPage}
+      {block:IfNotShowAsLandingPage}
+        <div id="articles">
+            {block:Posts}
 
-            {block:Text}
-              <article class="post text">
-                {block:Title}
+              {block:Text}
+                <article class="post text">
+                  {block:Title}
+                    <div class="title">
+                      <h1>
+                        <a href="{Permalink}">
+                          <span>{Title}</span>
+                        </a>
+                      </h1>
+                      {block:HasTags}
+                        <div class="tags">
+                          {block:Tags}
+                            <a class="tag" href="{TagURL}">#{Tag}</a>
+                          {/block:Tags}
+                        </div>
+                      {/block:HasTags}
+                      {block:Date}
+                        <div class="meta"><span id="date">Posted {TimeAgo}</span>
+                          {block:IfDisqusShortname}
+                            <div class="comments"><a class="dsq-comment-count" href="{Permalink}#disqus_thread">{lang:Comments}</a></span></div>
+                          {/block:IfDisqusShortname}
+                        </div>
+                      {/block:Date}
+                    </div>
+                  {/block:Title}
+                  <div class="content">{Body}</div>
+                  {block:PermalinkPage}
+                    <div class="discussion">
+                      <div class="separator"></div>
+                      {block:Twitter}
+                        <a href="https://twitter.com/{TwitterUsername}" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Follow @{TwitterUsername}</a>
+                        <div class="social">
+                          {block:Title}
+                            <div class="fb-like" data-width="75" data-layout="button_count" data-show-faces="false" data-send="false"></div>
+                            <a href="https://twitter.com/share" class="twitter-share-button" data-text="{Title}" data-via="{TwitterUsername}" data-url="{Permalink}">Tweet</a>
+                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                            <a class="pin-it" href="//pinterest.com/pin/create/button/?url={Permalink}&media={Permalink}&description={Title}" data-pin-do="buttonPin" data-pin-config="beside">
+                              <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
+                            </a>
+                          {/block:Title}
+                        </div>
+                      {/block:Twitter}
+                      {block:IfDisqusShortname}
+                        <h3>Leave a Comment</h3>
+                        <div class="row">
+                          <div class="span10 offset2 comments-container">
+                            <div id="disqus_thread"></div>
+                            <script type="text/javascript" src="http://{text:Disqus Shortname}.disqus.com/embed.js"></script>
+                            <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
+                          </div> <!-- .comments-container -->
+                        </div>
+                      {/block:IfDisqusShortname}
+                    </div>
+                  {/block:PermalinkPage}
+                </article>
+              {/block:Text}
+
+              {block:Photo}
+                <article class="post photo">
                   <div class="title">
-                    <h1>
-                      <a href="{Permalink}">
-                        <span>{Title}</span>
-                      </a>
-                    </h1>
                     {block:HasTags}
                       <div class="tags">
                         {block:Tags}
@@ -587,334 +728,303 @@
                       </div>
                     {/block:Date}
                   </div>
-                {/block:Title}
-                <div class="content">{Body}</div>
-                {block:PermalinkPage}
-                  <div class="discussion">
-                    <div class="separator"></div>
-                    {block:Twitter}
-                      <a href="https://twitter.com/{TwitterUsername}" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Follow @{TwitterUsername}</a>
-                      <div class="social">
-                        {block:Title}
-                          <div class="fb-like" data-width="75" data-layout="button_count" data-show-faces="false" data-send="false"></div>
-                          <a href="https://twitter.com/share" class="twitter-share-button" data-text="{Title}" data-via="{TwitterUsername}" data-url="{Permalink}">Tweet</a>
-                          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                          <a class="pin-it" href="//pinterest.com/pin/create/button/?url={Permalink}&media={Permalink}&description={Title}" data-pin-do="buttonPin" data-pin-config="beside">
-                            <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
-                          </a>
-                        {/block:Title}
-                      </div>
-                    {/block:Twitter}
-                    {block:IfDisqusShortname}
-                      <h3>Leave a Comment</h3>
-                      <div class="row">
-                        <div class="span10 offset2 comments-container">
-                          <div id="disqus_thread"></div>
-                          <script type="text/javascript" src="http://{text:Disqus Shortname}.disqus.com/embed.js"></script>
-                          <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
-                        </div> <!-- .comments-container -->
-                      </div>
-                    {/block:IfDisqusShortname}
-                  </div>
-                {/block:PermalinkPage}
-              </article>
-            {/block:Text}
-
-            {block:Photo}
-              <article class="post photo">
-                <div class="title">
-                  {block:HasTags}
-                    <div class="tags">
-                      {block:Tags}
-                        <a class="tag" href="{TagURL}">#{Tag}</a>
-                      {/block:Tags}
-                    </div>
-                  {/block:HasTags}
-                  {block:Date}
-                    <div class="meta"><span id="date">Posted {TimeAgo}</span>
-                      {block:IfDisqusShortname}
-                        <div class="comments"><a class="dsq-comment-count" href="{Permalink}#disqus_thread">{lang:Comments}</a></span></div>
-                      {/block:IfDisqusShortname}
-                    </div>
-                  {/block:Date}
-                </div>
-                <div class="content">
-                  <a class="image" href="{Permalink}">
-                    <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>
-                  </a>
-                  {block:Caption}
-                    <div class="caption">{Caption}</div>
-                  {/block:Caption}
-                </div>
-                {block:PermalinkPage}
-                  <div class="discussion">
-                    <div class="separator"></div>
-                    {block:Twitter}
-                      <a href="https://twitter.com/{TwitterUsername}" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Follow @{TwitterUsername}</a>
-                      <div class="social">
-                        <a href="https://twitter.com/share" class="twitter-share-button" data-text="Photo • {PhotoAlt}" data-via="{TwitterUsername}" data-url="{Permalink}">Tweet</a>
-                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                        <a class="pin-it" href="//pinterest.com/pin/create/button/?url={Permalink}&media={Permalink}&description={PhotoAlt}" data-pin-do="buttonPin" data-pin-config="beside">
-                          <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
-                        </a>
-                      </div>
-                    {/block:Twitter}
-                    {block:IfDisqusShortname}
-                      <h3>Leave a Comment</h3>
-                      <div class="row">
-                        <div class="span10 offset2 comments-container">
-                          <div id="disqus_thread"></div>
-                          <script type="text/javascript" src="http://{text:Disqus Shortname}.disqus.com/embed.js"></script>
-                          <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
-                        </div> <!-- .comments-container -->
-                      </div>
-                    {/block:IfDisqusShortname}
-                  </div>
-                {/block:PermalinkPage}
-              </article>
-            {/block:Photo}
-
-            {block:Photoset}
-              <article class="post photoset">
-                <div class="title">
-                  {block:HasTags}
-                    <div class="tags">
-                      {block:Tags}
-                        <a class="tag" href="{TagURL}">#{Tag}</a>
-                      {/block:Tags}
-                    </div>
-                  {/block:HasTags}
-                  {block:Date}
-                    <div class="meta"><span id="date">Posted {TimeAgo}</span>
-                      {block:IfDisqusShortname}
-                        <div class="comments"><a class="dsq-comment-count" href="{Permalink}#disqus_thread">{lang:Comments}</a></span></div>
-                      {/block:IfDisqusShortname}
-                    </div>
-                  {/block:Date}
-                </div>
-                {block:Photos}
                   <div class="content">
                     <a class="image" href="{Permalink}">
                       <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>
                     </a>
+                    {block:Caption}
+                      <div class="caption">{Caption}</div>
+                    {/block:Caption}
                   </div>
-                {/block:Photos}
-                {block:Caption}
-                  <div class="caption">{Caption}</div>
-                {/block:Caption}
-                {block:PermalinkPage}
-                  <div class="discussion">
-                    <div class="separator"></div>
-                    {block:Twitter}
-                      <a href="https://twitter.com/{TwitterUsername}" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Follow @{TwitterUsername}</a>
-                      <div class="social">
-                        <a href="https://twitter.com/share" class="twitter-share-button" data-text="Photoset • {PhotoAlt}" data-via="{TwitterUsername}" data-url="{Permalink}">Tweet</a>
-                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                        <a class="pin-it" href="//pinterest.com/pin/create/button/?url={Permalink}&media={Permalink}&description={PhotoAlt}" data-pin-do="buttonPin" data-pin-config="beside">
-                          <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
-                        </a>
-                      </div>
-                    {/block:Twitter}
-                    {block:IfDisqusShortname}
-                      <h3>Leave a Comment</h3>
-                      <div class="row">
-                        <div class="span10 offset2 comments-container">
-                          <div id="disqus_thread"></div>
-                          <script type="text/javascript" src="http://{text:Disqus Shortname}.disqus.com/embed.js"></script>
-                          <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
-                        </div> <!-- .comments-container -->
-                      </div>
-                    {/block:IfDisqusShortname}
-                  </div>
-                {/block:PermalinkPage}
-              </article>
-            {/block:Photoset}
-
-            {block:Quote}
-              <article class="post quote">
-                <div class="title">
-                  {block:HasTags}
-                    <div class="tags">
-                      {block:Tags}
-                        <a class="tag" href="{TagURL}">#{Tag}</a>
-                      {/block:Tags}
-                    </div>
-                  {/block:HasTags}
-                  {block:Date}
-                    <div class="meta"><span id="date">Posted {TimeAgo}</span>
-                      {block:IfDisqusShortname}
-                        <div class="comments"><a class="dsq-comment-count" href="{Permalink}#disqus_thread">{lang:Comments}</a></span></div>
-                      {/block:IfDisqusShortname}
-                    </div>
-                  {/block:Date}
-                </div>
-                <blockquote>
-                  <a href="{Permalink}">
-                    <p>{Quote}</p>
-                  </a>
-                </blockquote>
-                {block:Source}
-                  <div class="source">&mdash; {Source}</div>
-                {/block:Source}
-                {block:PermalinkPage}
-                  <div class="discussion">
-                    <div class="separator"></div>
-                    {block:Twitter}
-                      <a href="https://twitter.com/{TwitterUsername}" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Follow @{TwitterUsername}</a>
-                      <div class="social">
-                        {block:Source}
-                          <a href="https://twitter.com/share" class="twitter-share-button" data-text="Quote • {Source}" data-via="{TwitterUsername}" data-url="{Permalink}">Tweet</a>
+                  {block:PermalinkPage}
+                    <div class="discussion">
+                      <div class="separator"></div>
+                      {block:Twitter}
+                        <a href="https://twitter.com/{TwitterUsername}" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Follow @{TwitterUsername}</a>
+                        <div class="social">
+                          <a href="https://twitter.com/share" class="twitter-share-button" data-text="Photo • {PhotoAlt}" data-via="{TwitterUsername}" data-url="{Permalink}">Tweet</a>
                           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                          <a class="pin-it" href="//pinterest.com/pin/create/button/?url={Permalink}&media={Permalink}&description={Source}" data-pin-do="buttonPin" data-pin-config="beside">
+                          <a class="pin-it" href="//pinterest.com/pin/create/button/?url={Permalink}&media={Permalink}&description={PhotoAlt}" data-pin-do="buttonPin" data-pin-config="beside">
                             <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
                           </a>
-                        {/block:Source}
-                      </div>
-                    {/block:Twitter}
-                    {block:IfDisqusShortname}
-                      <h3>Leave a Comment</h3>
-                      <div class="row">
-                        <div class="span10 offset2 comments-container">
-                          <div id="disqus_thread"></div>
-                          <script type="text/javascript" src="http://{text:Disqus Shortname}.disqus.com/embed.js"></script>
-                          <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
-                        </div> <!-- .comments-container -->
-                      </div>
-                    {/block:IfDisqusShortname}
-                  </div>
-                {/block:PermalinkPage}
-              </article>
-            {/block:Quote}
-
-            {block:Link}
-              <article class="post link">
-                <div class="title">
-                  {block:HasTags}
-                    <div class="tags">
-                      {block:Tags}
-                        <a class="tag" href="{TagURL}">#{Tag}</a>
-                      {/block:Tags}
-                    </div>
-                  {/block:HasTags}
-                  {block:Date}
-                    <div class="meta"><span id="date">Posted {TimeAgo}</span>
+                        </div>
+                      {/block:Twitter}
                       {block:IfDisqusShortname}
-                        <div class="comments"><a class="dsq-comment-count" href="{Permalink}#disqus_thread">{lang:Comments}</a></span></div>
+                        <h3>Leave a Comment</h3>
+                        <div class="row">
+                          <div class="span10 offset2 comments-container">
+                            <div id="disqus_thread"></div>
+                            <script type="text/javascript" src="http://{text:Disqus Shortname}.disqus.com/embed.js"></script>
+                            <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
+                          </div> <!-- .comments-container -->
+                        </div>
                       {/block:IfDisqusShortname}
                     </div>
-                  {/block:Date}
-                </div>
-                <div id="content">
-                  <a href="{URL}" {Target}>{Name}</a>
-                  {block:Description}
-                    <a id="description" href="{Permalink}">
-                      <div class="description">{Description}</div>
-                    </a>
-                  {/block:Description}
-                </div>
-                {block:PermalinkPage}
-                  <div class="discussion">
-                    <div class="separator"></div>
-                    {block:Twitter}
-                      <a href="https://twitter.com/{TwitterUsername}" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Follow @{TwitterUsername}</a>
-                      <div class="social">
-                        <a href="https://twitter.com/share" class="twitter-share-button" data-text="Link • {Name}" data-via="{TwitterUsername}" data-url="{Permalink}">Tweet</a>
-                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                        <a class="pin-it" href="//pinterest.com/pin/create/button/?url={Permalink}&media={Permalink}&description={Name}" data-pin-do="buttonPin" data-pin-config="beside">
-                          <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
-                        </a>
-                      </div>
-                    {/block:Twitter}
-                    {block:IfDisqusShortname}
-                      <h3>Leave a Comment</h3>
-                      <div class="row">
-                        <div class="span10 offset2 comments-container">
-                          <div id="disqus_thread"></div>
-                          <script type="text/javascript" src="http://{text:Disqus Shortname}.disqus.com/embed.js"></script>
-                          <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
-                        </div> <!-- .comments-container -->
-                      </div>
-                    {/block:IfDisqusShortname}
-                  </div>
-                {/block:PermalinkPage}
-              </article>
-            {/block:Link}
+                  {/block:PermalinkPage}
+                </article>
+              {/block:Photo}
 
-            {block:Video}
-              <article class="post video">
-                <div class="title">
-                  {block:HasTags}
-                    <div class="tags">
-                      {block:Tags}
-                        <a class="tag" href="{TagURL}">#{Tag}</a>
-                      {/block:Tags}
+              {block:Photoset}
+                <article class="post photoset">
+                  <div class="title">
+                    {block:HasTags}
+                      <div class="tags">
+                        {block:Tags}
+                          <a class="tag" href="{TagURL}">#{Tag}</a>
+                        {/block:Tags}
+                      </div>
+                    {/block:HasTags}
+                    {block:Date}
+                      <div class="meta"><span id="date">Posted {TimeAgo}</span>
+                        {block:IfDisqusShortname}
+                          <div class="comments"><a class="dsq-comment-count" href="{Permalink}#disqus_thread">{lang:Comments}</a></span></div>
+                        {/block:IfDisqusShortname}
+                      </div>
+                    {/block:Date}
+                  </div>
+                  {block:Photos}
+                    <div class="content">
+                      <a class="image" href="{Permalink}">
+                        <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>
+                      </a>
                     </div>
-                  {/block:HasTags}
-                  {block:Date}
-                    <div class="meta"><span id="date">Posted {TimeAgo}</span>
-                      {block:IfDisqusShortname}
-                        <div class="comments"><a class="dsq-comment-count" href="{Permalink}#disqus_thread">{lang:Comments}</a></span></div>
-                      {/block:IfDisqusShortname}
-                    </div>
-                  {/block:Date}
-                </div>
-                <div id="player">{Video-700}</div>
-                {block:Caption}
-                  <a id="caption" href="{Permalink}">
+                  {/block:Photos}
+                  {block:Caption}
                     <div class="caption">{Caption}</div>
-                  </a>
-                {/block:Caption}
-                {block:PermalinkPage}
-                  <div class="discussion">
-                    <div class="separator"></div>
-                    {block:Twitter}
-                      <a href="https://twitter.com/{TwitterUsername}" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Follow @{TwitterUsername}</a>
-                      <div class="social">
-                        {block:Caption}
-                          <a href="https://twitter.com/share" class="twitter-share-button" data-text="I just posted a video" data-via="{TwitterUsername}" data-url="{Permalink}">Tweet</a>
+                  {/block:Caption}
+                  {block:PermalinkPage}
+                    <div class="discussion">
+                      <div class="separator"></div>
+                      {block:Twitter}
+                        <a href="https://twitter.com/{TwitterUsername}" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Follow @{TwitterUsername}</a>
+                        <div class="social">
+                          <a href="https://twitter.com/share" class="twitter-share-button" data-text="Photoset • {PhotoAlt}" data-via="{TwitterUsername}" data-url="{Permalink}">Tweet</a>
                           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                          <a class="pin-it" href="//pinterest.com/pin/create/button/?url={Permalink}&media={Permalink}&description=" data-pin-do="buttonPin" data-pin-config="beside">
+                          <a class="pin-it" href="//pinterest.com/pin/create/button/?url={Permalink}&media={Permalink}&description={PhotoAlt}" data-pin-do="buttonPin" data-pin-config="beside">
                             <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
                           </a>
-                        {/block:Caption}
-                      </div>
-                    {/block:Twitter}
-                    {block:IfDisqusShortname}
-                      <h3>Leave a Comment</h3>
-                      <div class="row">
-                        <div class="span10 offset2 comments-container">
-                          <div id="disqus_thread"></div>
-                          <script type="text/javascript" src="http://{text:Disqus Shortname}.disqus.com/embed.js"></script>
-                          <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
-                        </div> <!-- .comments-container -->
-                      </div>
-                    {/block:IfDisqusShortname}
-                  </div>
-                {/block:PermalinkPage}
-              </article>
-            {/block:Video}
+                        </div>
+                      {/block:Twitter}
+                      {block:IfDisqusShortname}
+                        <h3>Leave a Comment</h3>
+                        <div class="row">
+                          <div class="span10 offset2 comments-container">
+                            <div id="disqus_thread"></div>
+                            <script type="text/javascript" src="http://{text:Disqus Shortname}.disqus.com/embed.js"></script>
+                            <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
+                          </div> <!-- .comments-container -->
+                        </div>
+                      {/block:IfDisqusShortname}
+                    </div>
+                  {/block:PermalinkPage}
+                </article>
+              {/block:Photoset}
 
-          {/block:Posts}
-      </div>
-      <div class="posts clearfix">
-        <ul>
-          {block:PreviousPage}
-            <li class="previous">
-              <a href="{PreviousPage}">&larr; previous</a>
-            </li>
-          {/block:PreviousPage}
-          {block:NextPage}
-            <li class="next">
-              <a href="{NextPage}">next &rarr;</a>
-            </li>
-          {/block:NextPage}
-        </ul>
-      </div>
+              {block:Quote}
+                <article class="post quote">
+                  <div class="title">
+                    {block:HasTags}
+                      <div class="tags">
+                        {block:Tags}
+                          <a class="tag" href="{TagURL}">#{Tag}</a>
+                        {/block:Tags}
+                      </div>
+                    {/block:HasTags}
+                    {block:Date}
+                      <div class="meta"><span id="date">Posted {TimeAgo}</span>
+                        {block:IfDisqusShortname}
+                          <div class="comments"><a class="dsq-comment-count" href="{Permalink}#disqus_thread">{lang:Comments}</a></span></div>
+                        {/block:IfDisqusShortname}
+                      </div>
+                    {/block:Date}
+                  </div>
+                  <blockquote>
+                    <a href="{Permalink}">
+                      <p>{Quote}</p>
+                    </a>
+                  </blockquote>
+                  {block:Source}
+                    <div class="source">&mdash; {Source}</div>
+                  {/block:Source}
+                  {block:PermalinkPage}
+                    <div class="discussion">
+                      <div class="separator"></div>
+                      {block:Twitter}
+                        <a href="https://twitter.com/{TwitterUsername}" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Follow @{TwitterUsername}</a>
+                        <div class="social">
+                          {block:Source}
+                            <a href="https://twitter.com/share" class="twitter-share-button" data-text="Quote • {Source}" data-via="{TwitterUsername}" data-url="{Permalink}">Tweet</a>
+                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                            <a class="pin-it" href="//pinterest.com/pin/create/button/?url={Permalink}&media={Permalink}&description={Source}" data-pin-do="buttonPin" data-pin-config="beside">
+                              <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
+                            </a>
+                          {/block:Source}
+                        </div>
+                      {/block:Twitter}
+                      {block:IfDisqusShortname}
+                        <h3>Leave a Comment</h3>
+                        <div class="row">
+                          <div class="span10 offset2 comments-container">
+                            <div id="disqus_thread"></div>
+                            <script type="text/javascript" src="http://{text:Disqus Shortname}.disqus.com/embed.js"></script>
+                            <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
+                          </div> <!-- .comments-container -->
+                        </div>
+                      {/block:IfDisqusShortname}
+                    </div>
+                  {/block:PermalinkPage}
+                </article>
+              {/block:Quote}
+
+              {block:Link}
+                <article class="post link">
+                  <div class="title">
+                    {block:HasTags}
+                      <div class="tags">
+                        {block:Tags}
+                          <a class="tag" href="{TagURL}">#{Tag}</a>
+                        {/block:Tags}
+                      </div>
+                    {/block:HasTags}
+                    {block:Date}
+                      <div class="meta"><span id="date">Posted {TimeAgo}</span>
+                        {block:IfDisqusShortname}
+                          <div class="comments"><a class="dsq-comment-count" href="{Permalink}#disqus_thread">{lang:Comments}</a></span></div>
+                        {/block:IfDisqusShortname}
+                      </div>
+                    {/block:Date}
+                  </div>
+                  <div id="content">
+                    <a href="{URL}" {Target}>{Name}</a>
+                    {block:Description}
+                      <a id="description" href="{Permalink}">
+                        <div class="description">{Description}</div>
+                      </a>
+                    {/block:Description}
+                  </div>
+                  {block:PermalinkPage}
+                    <div class="discussion">
+                      <div class="separator"></div>
+                      {block:Twitter}
+                        <a href="https://twitter.com/{TwitterUsername}" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Follow @{TwitterUsername}</a>
+                        <div class="social">
+                          <a href="https://twitter.com/share" class="twitter-share-button" data-text="Link • {Name}" data-via="{TwitterUsername}" data-url="{Permalink}">Tweet</a>
+                          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                          <a class="pin-it" href="//pinterest.com/pin/create/button/?url={Permalink}&media={Permalink}&description={Name}" data-pin-do="buttonPin" data-pin-config="beside">
+                            <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
+                          </a>
+                        </div>
+                      {/block:Twitter}
+                      {block:IfDisqusShortname}
+                        <h3>Leave a Comment</h3>
+                        <div class="row">
+                          <div class="span10 offset2 comments-container">
+                            <div id="disqus_thread"></div>
+                            <script type="text/javascript" src="http://{text:Disqus Shortname}.disqus.com/embed.js"></script>
+                            <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
+                          </div> <!-- .comments-container -->
+                        </div>
+                      {/block:IfDisqusShortname}
+                    </div>
+                  {/block:PermalinkPage}
+                </article>
+              {/block:Link}
+
+              {block:Video}
+                <article class="post video">
+                  <div class="title">
+                    {block:HasTags}
+                      <div class="tags">
+                        {block:Tags}
+                          <a class="tag" href="{TagURL}">#{Tag}</a>
+                        {/block:Tags}
+                      </div>
+                    {/block:HasTags}
+                    {block:Date}
+                      <div class="meta"><span id="date">Posted {TimeAgo}</span>
+                        {block:IfDisqusShortname}
+                          <div class="comments"><a class="dsq-comment-count" href="{Permalink}#disqus_thread">{lang:Comments}</a></span></div>
+                        {/block:IfDisqusShortname}
+                      </div>
+                    {/block:Date}
+                  </div>
+                  <div id="player">{Video-700}</div>
+                  {block:Caption}
+                    <a id="caption" href="{Permalink}">
+                      <div class="caption">{Caption}</div>
+                    </a>
+                  {/block:Caption}
+                  {block:PermalinkPage}
+                    <div class="discussion">
+                      <div class="separator"></div>
+                      {block:Twitter}
+                        <a href="https://twitter.com/{TwitterUsername}" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Follow @{TwitterUsername}</a>
+                        <div class="social">
+                          {block:Caption}
+                            <a href="https://twitter.com/share" class="twitter-share-button" data-text="I just posted a video" data-via="{TwitterUsername}" data-url="{Permalink}">Tweet</a>
+                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                            <a class="pin-it" href="//pinterest.com/pin/create/button/?url={Permalink}&media={Permalink}&description=" data-pin-do="buttonPin" data-pin-config="beside">
+                              <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
+                            </a>
+                          {/block:Caption}
+                        </div>
+                      {/block:Twitter}
+                      {block:IfDisqusShortname}
+                        <h3>Leave a Comment</h3>
+                        <div class="row">
+                          <div class="span10 offset2 comments-container">
+                            <div id="disqus_thread"></div>
+                            <script type="text/javascript" src="http://{text:Disqus Shortname}.disqus.com/embed.js"></script>
+                            <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
+                          </div> <!-- .comments-container -->
+                        </div>
+                      {/block:IfDisqusShortname}
+                    </div>
+                  {/block:PermalinkPage}
+                </article>
+              {/block:Video}
+
+            {/block:Posts}
+        </div>
+        <div class="posts clearfix">
+          <ul>
+            {block:PreviousPage}
+              <li class="previous">
+                <a href="{PreviousPage}">&larr; previous</a>
+              </li>
+            {/block:PreviousPage}
+            {block:NextPage}
+              <li class="next">
+                <a href="{NextPage}">next &rarr;</a>
+              </li>
+            {/block:NextPage}
+          </ul>
+        </div>
+      {/block:IfNotShowAsLandingPage}
     </section>
     <footer class="clearfix">
       <div class ="separator"></div>
-      <a href="http://chocol.it">Home</a>
-      <a href="/" data-active="true">Blog</a>
+      {block:IfHomeLinkUrl}
+        <a href="{text:Home Link Url}">Home</a>
+      {/block:IfHomeLinkUrl}
+      {block:IfBlogLinkUrl}
+        <a href="{text:Blog Link Url}" data-active="true">Blog</a>
+      {/block:IfBlogLinkUrl}
+      {block:If3rdLinkUrl}
+        {block:If3rdLinkText}
+          <a href="{text:3rd Link Url}">{text:3rd Link Text}</a>
+        {/block:If3rdLinkText}
+      {/block:If3rdLinkUrl}
+      {block:If4thLinkUrl}
+        {block:If4thLinkText}
+          <a href="{text:4th Link Url}">{text:4th Link Text}</a>
+        {/block:If4thLinkText}
+      {/block:If4thLinkUrl}
+      {block:If5thLinkUrl}
+        {block:If5thLinkText}
+          <a href="{text:5th Link Url}">{text:5th Link Text}</a>
+        {/block:If5thLinkText}
+      {/block:If5thLinkUrl}
       {block:Twitter}
         <a id="twitter-handle" href="http://twitter.com/{TwitterUsername}">@{TwitterUsername}</a>
       {/block:Twitter}
