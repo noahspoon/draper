@@ -12,6 +12,8 @@
     <meta name="text:Disqus Shortname" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
+    <!-- DEFAULT FONTS -->
+    <meta name="font:Logo" content=""/>
     <!-- DEFAULT COLORS -->
     <meta name="color:Background" content="#fafafa" />
     <meta name="color:Logo" content="#dddddd" />
@@ -23,6 +25,8 @@
     <meta name="color:Article Title" content="#222222" />
     <meta name="color:Article Meta" content="#949494" />
     <meta name="color:Highlight" content="#fffeca" />
+    <meta name="color:Landing Page Your Name" content="#222222" />
+    <meta name="color:Landing Page Your Profession" content="#222222" />
     <!-- DEFAULT TEXT -->
     <meta name="text:Logo Text" content="draper" />
     <meta name="text:Facebook App ID" content="" />
@@ -42,6 +46,7 @@
     <meta name="text:Image Hero Width" content="398" />
     <!-- DEFAULTS -->
     <meta name="if:Show As Landing Page" content="0" />
+    <meta name="if:Show Follow Button" content="1" />
     <!-- DEFAULT IMAGE -->
     <meta name="image:Hero" content="http://chocol.it/assets/workstation.png" />
 
@@ -85,6 +90,7 @@
         display: inline-block;
         float: left;
         font-size: 30px;
+        font-family: {font:Logo};
         color: {color:Logo};
         text-shadow: 1px -1px 1px rgba(0,0,0,0.3);
         border: none;
@@ -422,7 +428,7 @@
         height: auto;
       }
       #landing h1 {
-        color: #222;
+        color: {color:Landing Page Your Profession};
         font-family: "Montserrat", 'Helvetica Neue', Helvetica, Arial, sans-serif;
         font-weight: 400;
         font-size: 2.75em;
@@ -432,6 +438,7 @@
       }
       #landing h1 span {
         font-weight: 700;
+        color: {color:Landing Page Your Name};
       }
       #landing p {
         margin: 1em auto;
@@ -529,11 +536,15 @@
         header {
           margin-bottom: 0;
         }
+        h1 {
+          font-size: 170%!important;
+        }
         nav #logo {
           float: none;
         }
         nav ul,
-        nav #button {
+        nav #button,
+        nav .twitter-follow-button {
           display: none;
         }
         article .title h1 {
@@ -630,7 +641,13 @@
         </ul>
         <div class="pull-right">
           {block:Twitter}
-            <a id="button" href="http://twitter.com/{TwitterUsername}" class="btn btn-smaller">@{TwitterUsername}</a>
+            {block:IfShowFollowButton}
+              <a href="https://twitter.com/{TwitterUsername}" class="twitter-follow-button" data-show-count="false" data-size="large" data-show-screen-name="false">Follow @{TwitterUsername}</a>
+              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            {/block:IfShowFollowButton}
+            {block:IfNotShowFollowButton}
+              <a id="button" href="http://twitter.com/{TwitterUsername}" class="btn btn-smaller">@{TwitterUsername}</a>
+            {/block:IfNotShowFollowButton}
           {/block:Twitter}
         </div>
       </nav>
@@ -1038,9 +1055,6 @@
           <a href="{text:5th Link Url}">{text:5th Link Text}</a>
         {/block:If5thLinkText}
       {/block:If5thLinkUrl}
-      {block:Twitter}
-        <a id="twitter-handle" href="http://twitter.com/{TwitterUsername}">@{TwitterUsername}</a>
-      {/block:Twitter}
     </footer>
 
     {block:IfDisqusShortname}
