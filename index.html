@@ -48,6 +48,7 @@
     <meta name="if:Show As Landing Page" content="0" />
     <meta name="if:Show Follow Button" content="0" />
     <meta name="if:Show Footer" content="1" />
+    <meta name="if:Show Search" content="0" />
     <!-- DEFAULT IMAGE -->
     <meta name="image:Hero" content="http://chocol.it/assets/workstation.png" />
 
@@ -121,55 +122,6 @@
       }
       nav #button {
         vertical-align: -6px;
-      }
-      nav .btn {
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        display: inline-block;
-        cursor: pointer;
-        padding: 12px 40px;
-        font-size: 28px;
-        font-family: "Montserrat", 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        font-weight: 700;
-        -webkit-border-radius: 4px;
-        border-radius: 4px;
-        background-color: #2B96F1;
-        -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3),inset 0 1px rgba(255, 255, 255, 0.25);
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3),inset 0 1px rgba(255, 255, 255, 0.25);
-        border: solid 1px #2473B0;
-        border-bottom: 1px solid #20608F;
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #2A99EF), color-stop(1, #237BBD));
-        background: -webkit-linear-gradient(top, #2A99EF 0%, #237BBD 100%);
-        background: -moz-linear-gradient(top, #2A99EF 0%, #237BBD 100%);
-        background: -o-linear-gradient(top, #2A99EF 0%, #237BBD 100%);
-        background: -ms-linear-gradient(top, #2A99EF 0%, #237BBD 100%);
-        background: linear-gradient(top, #2A99EF 0%, #237BBD 100%);
-        color: #FFF;
-        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
-      }
-      nav .btn:hover {
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #51adf5), color-stop(1, #2a86cb));
-        background: -webkit-linear-gradient(top, #51adf5 0%, #2a86cb 100%);
-        background: -moz-linear-gradient(top, #51adf5 0%, #2a86cb 100%);
-        background: -o-linear-gradient(top, #51adf5 0%, #2a86cb 100%);
-        background: -ms-linear-gradient(top, #51adf5 0%, #2a86cb 100%);
-        background: linear-gradient(top, #51adf5 0%, #2a86cb 100%);
-      }
-      nav .btn:active {
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #237bbd), color-stop(1, #2a99ef));
-        background: -webkit-linear-gradient(top, #237bbd 0%, #2a99ef 100%);
-        background: -moz-linear-gradient(top, #237bbd 0%, #2a99ef 100%);
-        background: -o-linear-gradient(top, #237bbd 0%, #2a99ef 100%);
-        background: -ms-linear-gradient(top, #237bbd 0%, #2a99ef 100%);
-        background: linear-gradient(top, #237bbd 0%, #2a99ef 100%);
-        -webkit-box-shadow: 0 1px 0 #fff,inset 0 0 25px rgba(0,0,0,0.2);
-        box-shadow: 0 1px 0 #fff,inset 0 0 25px rgba(0,0,0,0.2);
-      }
-      nav .btn-smaller {
-        padding: 5px 15px;
-        font-size: 13px;
       }
       header {
         margin-bottom: 3.5em;
@@ -419,6 +371,112 @@
         border: none;
       }
 
+      /* General */
+      .btn {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        display: inline-block;
+        cursor: pointer;
+        padding: 12px 40px;
+        font-size: 28px;
+        font-family: "Montserrat", 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-weight: 700;
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+        background-color: #2B96F1;
+        -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3),inset 0 1px rgba(255, 255, 255, 0.25);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3),inset 0 1px rgba(255, 255, 255, 0.25);
+        border: solid 1px #2473B0;
+        border-bottom: 1px solid #20608F;
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #2A99EF), color-stop(1, #237BBD));
+        background: -webkit-linear-gradient(top, #2A99EF 0%, #237BBD 100%);
+        background: -moz-linear-gradient(top, #2A99EF 0%, #237BBD 100%);
+        background: -o-linear-gradient(top, #2A99EF 0%, #237BBD 100%);
+        background: -ms-linear-gradient(top, #2A99EF 0%, #237BBD 100%);
+        background: linear-gradient(top, #2A99EF 0%, #237BBD 100%);
+        color: #FFF;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+      }
+      .btn:hover {
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #51adf5), color-stop(1, #2a86cb));
+        background: -webkit-linear-gradient(top, #51adf5 0%, #2a86cb 100%);
+        background: -moz-linear-gradient(top, #51adf5 0%, #2a86cb 100%);
+        background: -o-linear-gradient(top, #51adf5 0%, #2a86cb 100%);
+        background: -ms-linear-gradient(top, #51adf5 0%, #2a86cb 100%);
+        background: linear-gradient(top, #51adf5 0%, #2a86cb 100%);
+      }
+      .btn:active {
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #237bbd), color-stop(1, #2a99ef));
+        background: -webkit-linear-gradient(top, #237bbd 0%, #2a99ef 100%);
+        background: -moz-linear-gradient(top, #237bbd 0%, #2a99ef 100%);
+        background: -o-linear-gradient(top, #237bbd 0%, #2a99ef 100%);
+        background: -ms-linear-gradient(top, #237bbd 0%, #2a99ef 100%);
+        background: linear-gradient(top, #237bbd 0%, #2a99ef 100%);
+        -webkit-box-shadow: 0 1px 0 #fff,inset 0 0 25px rgba(0,0,0,0.2);
+        box-shadow: 0 1px 0 #fff,inset 0 0 25px rgba(0,0,0,0.2);
+      }
+      .btn-smaller {
+        padding: 5px 15px;
+        font-size: 13px;
+      }
+      .search {
+        text-align: center;
+        margin: 40px 0 64px 0!important;
+      }
+      .search input[type="text"] {
+        width: 250px;
+        margin-right: 5px;
+        vertical-align: top;
+        color: #1C1C1C;
+        display: inline-block;
+        padding: 5px 10px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        -webkit-box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1),0 1px 0 #FFF;
+        box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1),0 1px 0 #FFF;
+        -webkit-font-smoothing: antialiased;
+        font-size: 13px;
+        font-family: "Montserrat", 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-weight: 700;
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+        background: rgba(0, 0, 0, 0.03);
+        text-shadow: 0 1px 0 #FFF;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-box-shadow: 0 0 0 2px rgba(255, 255, 255, 0);
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0);
+        -webkit-transition: all 200ms linear;
+        -moz-transition: all 200ms linear;
+        -o-transition: all 200ms linear;
+        -ms-transition: all 200ms linear;
+        transition: all 200ms linear;
+      }
+      .search input[type="text"]:focus {
+        outline: none;
+        -webkit-box-shadow:0 0 0 2px #b1dbfe;
+        box-shadow:0 0 0 2px #b1dbfe
+      }
+      .search input[type="text"]::selection {
+        background-color: #D5EAFC;
+        text-shadow: 0 1px 0 #FFF;
+      }
+      .search input {
+        -webkit-font-smoothing: antialiased;
+        -moz-font-smoothing: antialiased;
+        -ms-font-smoothing: antialiased;
+        -o-font-smoothing: antialiased;
+        font-smoothing: antialiased;
+      }
+      .search-count {
+        text-align: center;
+        font-size: 2.75em;
+        font-weight: 700;
+        color: #1C1C1C;
+      }
+
       /* Landing Page */
       #landing {
         text-align: center;
@@ -500,7 +558,7 @@
       /* Posts Pager */
       .posts {
         display: block;
-        margin: 0 auto;
+        margin: 60px auto;
         max-width: 600px;
       }
       .posts ul {
@@ -687,6 +745,9 @@
 
       {block:IfNotShowAsLandingPage}
         <div id="articles">
+            {block:SearchPage}
+              <div class="search-count">{SearchResultCount} Found</div>
+            {/block:SearchPage}
             {block:Posts}
 
               {block:Text}
@@ -1039,6 +1100,13 @@
       {/block:IfNotShowAsLandingPage}
     </section>
     <footer class="clearfix {block:IfNotShowFooter}hide{/block:IfNotShowFooter}">
+      {block:IfShowSearch}
+        <div class ="separator"></div>
+        <form action="/search" method="get" class="search">
+          <input type="text" name="q" value="{SearchQuery}" />
+          <input class="btn btn-smaller" type="submit" value="Search" />
+        </form>
+      {/block:IfShowSearch}
       <div class ="separator"></div>
       {block:IfHomeLinkUrl}
         <a href="{text:Home Link Url}" {block:IfShowAsLandingPage}data-active="true"{/block:IfShowAsLandingPage}>Home</a>
