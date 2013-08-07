@@ -46,7 +46,8 @@
     <meta name="text:Image Hero Width" content="398" />
     <!-- DEFAULTS -->
     <meta name="if:Show As Landing Page" content="0" />
-    <meta name="if:Show Follow Button" content="1" />
+    <meta name="if:Show Follow Button" content="0" />
+    <meta name="if:Show Footer" content="1" />
     <!-- DEFAULT IMAGE -->
     <meta name="image:Hero" content="http://chocol.it/assets/workstation.png" />
 
@@ -463,6 +464,11 @@
         padding: 0 0.1em;
       }
 
+      /* Hide */
+      .hide {
+        display: none;
+      }
+
       /* Code Blocks */
       pre {
         background-color: #f8f8ff;
@@ -609,12 +615,12 @@
         <ul>
           <li>
             {block:IfHomeLinkUrl}
-              <a href="{text:Home Link Url}">Home</a>
+              <a href="{text:Home Link Url}" {block:IfShowAsLandingPage}data-active="true"{/block:IfShowAsLandingPage}>Home</a>
             {/block:IfNotHomeLinkUrl}
           </li>
           <li>
             {block:IfBlogLinkUrl}
-              <a href="{text:Blog Link Url}" data-active="true">Blog</a>
+              <a href="{text:Blog Link Url}" {block:IfNotShowAsLandingPage}data-active="true"{/block:IfNotShowAsLandingPage}>Blog</a>
             {/block:IfBlogLinkUrl}
           </li>
           <li>
@@ -1032,13 +1038,13 @@
         </div>
       {/block:IfNotShowAsLandingPage}
     </section>
-    <footer class="clearfix">
+    <footer class="clearfix {block:IfNotShowFooter}hide{/block:IfNotShowFooter}">
       <div class ="separator"></div>
       {block:IfHomeLinkUrl}
-        <a href="{text:Home Link Url}">Home</a>
+        <a href="{text:Home Link Url}" {block:IfShowAsLandingPage}data-active="true"{/block:IfShowAsLandingPage}>Home</a>
       {/block:IfHomeLinkUrl}
       {block:IfBlogLinkUrl}
-        <a href="{text:Blog Link Url}" data-active="true">Blog</a>
+        <a href="{text:Blog Link Url}" {block:IfNotShowAsLandingPage}data-active="true"{/block:IfNotShowAsLandingPage}>Blog</a>
       {/block:IfBlogLinkUrl}
       {block:If3rdLinkUrl}
         {block:If3rdLinkText}
