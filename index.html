@@ -752,7 +752,7 @@
             {block:Posts}
 
               {block:Text}
-                <article class="post text">
+                <article class="post {PostType}" id="{PostID}">
                   {block:Title}
                     <div class="title">
                       <h1>
@@ -809,7 +809,7 @@
               {/block:Text}
 
               {block:Photo}
-                <article class="post photo">
+                <article class="post {PostType}" id="{PostID}">
                   <div class="title">
                     {block:HasTags}
                       <div class="tags">
@@ -864,7 +864,7 @@
               {/block:Photo}
 
               {block:Photoset}
-                <article class="post photoset">
+                <article class="post photoset" id="{PostID}">
                   <div class="title">
                     {block:HasTags}
                       <div class="tags">
@@ -921,7 +921,7 @@
               {/block:Photoset}
 
               {block:Quote}
-                <article class="post quote">
+                <article class="post {PostType}" id="{PostID}">
                   <div class="title">
                     {block:HasTags}
                       <div class="tags">
@@ -978,7 +978,7 @@
               {/block:Quote}
 
               {block:Link}
-                <article class="post link">
+                <article class="post {PostType}" id="{PostID}">
                   <div class="title">
                     {block:HasTags}
                       <div class="tags">
@@ -1033,7 +1033,7 @@
               {/block:Link}
 
               {block:Video}
-                <article class="post video">
+                <article class="post {PostType}" id="{PostID}">
                   <div class="title">
                     {block:HasTags}
                       <div class="tags">
