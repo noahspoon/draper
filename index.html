@@ -777,7 +777,6 @@
                     </div>
                   {/block:Title}
                   <div class="content">{Body}</div>
-                  {block:PermalinkPage}
                     <div class="discussion">
                       <div class="separator"></div>
                       {block:Twitter}
@@ -793,18 +792,19 @@
                           {/block:Title}
                         </div>
                       {/block:Twitter}
-                      {block:IfDisqusShortname}
-                        <h3>Leave a Comment</h3>
-                        <div class="row">
-                          <div class="span10 offset2 comments-container">
-                            <div id="disqus_thread"></div>
-                            <script type="text/javascript" src="http://{text:Disqus Shortname}.disqus.com/embed.js"></script>
-                            <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
-                          </div> <!-- .comments-container -->
-                        </div>
-                      {/block:IfDisqusShortname}
+                      {block:PermalinkPage}
+                        {block:IfDisqusShortname}
+                          <h3>Leave a Comment</h3>
+                          <div class="row">
+                            <div class="span10 offset2 comments-container">
+                              <div id="disqus_thread"></div>
+                              <script type="text/javascript" src="http://{text:Disqus Shortname}.disqus.com/embed.js"></script>
+                              <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
+                            </div> <!-- .comments-container -->
+                          </div>
+                        {/block:IfDisqusShortname}
+                      {/block:PermalinkPage}
                     </div>
-                  {/block:PermalinkPage}
                 </article>
               {/block:Text}
 
@@ -834,12 +834,12 @@
                       <div class="caption">{Caption}</div>
                     {/block:Caption}
                   </div>
-                  {block:PermalinkPage}
                     <div class="discussion">
                       <div class="separator"></div>
                       {block:Twitter}
                         <a href="https://twitter.com/{TwitterUsername}" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Follow @{TwitterUsername}</a>
                         <div class="social">
+                          <div class="fb-like" data-width="75" data-layout="button_count" data-show-faces="false" data-send="false"></div>
                           <a href="https://twitter.com/share" class="twitter-share-button" data-text="Photo • {PhotoAlt}" data-via="{TwitterUsername}" data-url="{Permalink}">Tweet</a>
                           <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
                           <a class="pin-it" href="//pinterest.com/pin/create/button/?url={Permalink}&media={Permalink}&description={PhotoAlt}" data-pin-do="buttonPin" data-pin-config="beside">
@@ -847,18 +847,19 @@
                           </a>
                         </div>
                       {/block:Twitter}
-                      {block:IfDisqusShortname}
-                        <h3>Leave a Comment</h3>
-                        <div class="row">
-                          <div class="span10 offset2 comments-container">
-                            <div id="disqus_thread"></div>
-                            <script type="text/javascript" src="http://{text:Disqus Shortname}.disqus.com/embed.js"></script>
-                            <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
-                          </div> <!-- .comments-container -->
-                        </div>
-                      {/block:IfDisqusShortname}
+                      {block:PermalinkPage}
+                        {block:IfDisqusShortname}
+                          <h3>Leave a Comment</h3>
+                          <div class="row">
+                            <div class="span10 offset2 comments-container">
+                              <div id="disqus_thread"></div>
+                              <script type="text/javascript" src="http://{text:Disqus Shortname}.disqus.com/embed.js"></script>
+                              <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
+                            </div> <!-- .comments-container -->
+                          </div>
+                        {/block:IfDisqusShortname}
+                      {/block:PermalinkPage}
                     </div>
-                  {/block:PermalinkPage}
                 </article>
               {/block:Photo}
 
@@ -890,19 +891,20 @@
                   {block:Caption}
                     <div class="caption">{Caption}</div>
                   {/block:Caption}
-                  {block:PermalinkPage}
-                    <div class="discussion">
-                      <div class="separator"></div>
-                      {block:Twitter}
-                        <a href="https://twitter.com/{TwitterUsername}" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Follow @{TwitterUsername}</a>
-                        <div class="social">
-                          <a href="https://twitter.com/share" class="twitter-share-button" data-text="Photoset • {PhotoAlt}" data-via="{TwitterUsername}" data-url="{Permalink}">Tweet</a>
-                          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                          <a class="pin-it" href="//pinterest.com/pin/create/button/?url={Permalink}&media={Permalink}&description={PhotoAlt}" data-pin-do="buttonPin" data-pin-config="beside">
-                            <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
-                          </a>
-                        </div>
-                      {/block:Twitter}
+                  <div class="discussion">
+                    <div class="separator"></div>
+                    {block:Twitter}
+                      <a href="https://twitter.com/{TwitterUsername}" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Follow @{TwitterUsername}</a>
+                      <div class="social">
+                        <div class="fb-like" data-width="75" data-layout="button_count" data-show-faces="false" data-send="false"></div>
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-text="Photoset • {PhotoAlt}" data-via="{TwitterUsername}" data-url="{Permalink}">Tweet</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                        <a class="pin-it" href="//pinterest.com/pin/create/button/?url={Permalink}&media={Permalink}&description={PhotoAlt}" data-pin-do="buttonPin" data-pin-config="beside">
+                          <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
+                        </a>
+                      </div>
+                    {/block:Twitter}
+                    {block:PermalinkPage}
                       {block:IfDisqusShortname}
                         <h3>Leave a Comment</h3>
                         <div class="row">
@@ -913,8 +915,8 @@
                           </div> <!-- .comments-container -->
                         </div>
                       {/block:IfDisqusShortname}
-                    </div>
-                  {/block:PermalinkPage}
+                    {/block:PermalinkPage}
+                  </div>
                 </article>
               {/block:Photoset}
 
@@ -944,21 +946,22 @@
                   {block:Source}
                     <div class="source">&mdash; {Source}</div>
                   {/block:Source}
-                  {block:PermalinkPage}
-                    <div class="discussion">
-                      <div class="separator"></div>
-                      {block:Twitter}
-                        <a href="https://twitter.com/{TwitterUsername}" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Follow @{TwitterUsername}</a>
-                        <div class="social">
-                          {block:Source}
-                            <a href="https://twitter.com/share" class="twitter-share-button" data-text="Quote • {Source}" data-via="{TwitterUsername}" data-url="{Permalink}">Tweet</a>
-                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                            <a class="pin-it" href="//pinterest.com/pin/create/button/?url={Permalink}&media={Permalink}&description={Source}" data-pin-do="buttonPin" data-pin-config="beside">
-                              <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
-                            </a>
-                          {/block:Source}
-                        </div>
-                      {/block:Twitter}
+                  <div class="discussion">
+                    <div class="separator"></div>
+                    {block:Twitter}
+                      <a href="https://twitter.com/{TwitterUsername}" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Follow @{TwitterUsername}</a>
+                      <div class="social">
+                        {block:Source}
+                          <div class="fb-like" data-width="75" data-layout="button_count" data-show-faces="false" data-send="false"></div>
+                          <a href="https://twitter.com/share" class="twitter-share-button" data-text="Quote • {Source}" data-via="{TwitterUsername}" data-url="{Permalink}">Tweet</a>
+                          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                          <a class="pin-it" href="//pinterest.com/pin/create/button/?url={Permalink}&media={Permalink}&description={Source}" data-pin-do="buttonPin" data-pin-config="beside">
+                            <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
+                          </a>
+                        {/block:Source}
+                      </div>
+                    {/block:Twitter}
+                    {block:PermalinkPage}
                       {block:IfDisqusShortname}
                         <h3>Leave a Comment</h3>
                         <div class="row">
@@ -969,8 +972,8 @@
                           </div> <!-- .comments-container -->
                         </div>
                       {/block:IfDisqusShortname}
-                    </div>
-                  {/block:PermalinkPage}
+                    {/block:PermalinkPage}
+                  </div>
                 </article>
               {/block:Quote}
 
@@ -1000,19 +1003,20 @@
                       </a>
                     {/block:Description}
                   </div>
-                  {block:PermalinkPage}
-                    <div class="discussion">
-                      <div class="separator"></div>
-                      {block:Twitter}
-                        <a href="https://twitter.com/{TwitterUsername}" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Follow @{TwitterUsername}</a>
-                        <div class="social">
-                          <a href="https://twitter.com/share" class="twitter-share-button" data-text="Link • {Name}" data-via="{TwitterUsername}" data-url="{Permalink}">Tweet</a>
-                          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                          <a class="pin-it" href="//pinterest.com/pin/create/button/?url={Permalink}&media={Permalink}&description={Name}" data-pin-do="buttonPin" data-pin-config="beside">
-                            <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
-                          </a>
-                        </div>
-                      {/block:Twitter}
+                  <div class="discussion">
+                    <div class="separator"></div>
+                    {block:Twitter}
+                      <a href="https://twitter.com/{TwitterUsername}" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Follow @{TwitterUsername}</a>
+                      <div class="social">
+                        <div class="fb-like" data-width="75" data-layout="button_count" data-show-faces="false" data-send="false"></div>
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-text="Link • {Name}" data-via="{TwitterUsername}" data-url="{Permalink}">Tweet</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                        <a class="pin-it" href="//pinterest.com/pin/create/button/?url={Permalink}&media={Permalink}&description={Name}" data-pin-do="buttonPin" data-pin-config="beside">
+                          <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
+                        </a>
+                      </div>
+                    {/block:Twitter}
+                    {block:PermalinkPage}
                       {block:IfDisqusShortname}
                         <h3>Leave a Comment</h3>
                         <div class="row">
@@ -1023,8 +1027,8 @@
                           </div> <!-- .comments-container -->
                         </div>
                       {/block:IfDisqusShortname}
-                    </div>
-                  {/block:PermalinkPage}
+                    {/block:PermalinkPage}
+                  </div>
                 </article>
               {/block:Link}
 
@@ -1052,21 +1056,22 @@
                       <div class="caption">{Caption}</div>
                     </a>
                   {/block:Caption}
-                  {block:PermalinkPage}
-                    <div class="discussion">
-                      <div class="separator"></div>
-                      {block:Twitter}
-                        <a href="https://twitter.com/{TwitterUsername}" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Follow @{TwitterUsername}</a>
-                        <div class="social">
-                          {block:Caption}
-                            <a href="https://twitter.com/share" class="twitter-share-button" data-text="I just posted a video" data-via="{TwitterUsername}" data-url="{Permalink}">Tweet</a>
-                            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-                            <a class="pin-it" href="//pinterest.com/pin/create/button/?url={Permalink}&media={Permalink}&description=" data-pin-do="buttonPin" data-pin-config="beside">
-                              <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
-                            </a>
-                          {/block:Caption}
-                        </div>
-                      {/block:Twitter}
+                  <div class="discussion">
+                    <div class="separator"></div>
+                    {block:Twitter}
+                      <a href="https://twitter.com/{TwitterUsername}" class="twitter-follow-button" data-show-screen-name="false" data-show-count="false">Follow @{TwitterUsername}</a>
+                      <div class="social">
+                        {block:Caption}
+                          <div class="fb-like" data-width="75" data-layout="button_count" data-show-faces="false" data-send="false"></div>
+                          <a href="https://twitter.com/share" class="twitter-share-button" data-text="I just posted a video" data-via="{TwitterUsername}" data-url="{Permalink}">Tweet</a>
+                          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                          <a class="pin-it" href="//pinterest.com/pin/create/button/?url={Permalink}&media={Permalink}&description=" data-pin-do="buttonPin" data-pin-config="beside">
+                            <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
+                          </a>
+                        {/block:Caption}
+                      </div>
+                    {/block:Twitter}
+                    {block:PermalinkPage}
                       {block:IfDisqusShortname}
                         <h3>Leave a Comment</h3>
                         <div class="row">
@@ -1077,8 +1082,8 @@
                           </div> <!-- .comments-container -->
                         </div>
                       {/block:IfDisqusShortname}
-                    </div>
-                  {/block:PermalinkPage}
+                    {/block:PermalinkPage}
+                  </div>
                 </article>
               {/block:Video}
 
